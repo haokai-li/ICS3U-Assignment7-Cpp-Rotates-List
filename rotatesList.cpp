@@ -2,15 +2,15 @@
 //
 // Created by: Haokai
 // Created on: Sept 2021
-// This Program calculate average and list
+// This Program calculate rotates list
 
 #include <iostream>
 #include <string>
 #include <list>
 
 std::list<int> calculatedRotates(std::list<int> calculateRotatesList,
-                      int calculateKNumber) {
-    // This function calculate average and list
+                                 int calculateKNumber) {
+    // This function calculate rotates list
     std::list<int> rotatesNumberList;
     int factionRotatesNumber = 0;
     int timesNumberFirst = 0;
@@ -45,6 +45,7 @@ int main() {
     int userKNumber = -1;
     std::string userRotatesString;
     int userRotatesNumber = 0;
+    int answerNumberTimes = 0;
 
     // output
     std::cout << "Please enter 1 integer at a time. Enter -1 to end."
@@ -84,9 +85,15 @@ int main() {
 
         // output
         std::cout << "" << std::endl;
-        for (int answer_number : rotatesNumber) {
-            std::cout << answer_number << " ";
+        std::cout << "[";
+        for (int answerNumber : rotatesNumber) {
+            answerNumberTimes += 1;
+            std::cout << answerNumber;
+            if (answerNumberTimes < rotatesList.size()) {
+                std::cout << ", ";
+            }
         }
+        std::cout << "]" << std::endl;
     } else {
         // output
         std::cout << "" << std::endl;
