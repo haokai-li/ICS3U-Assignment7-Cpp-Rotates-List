@@ -8,25 +8,29 @@
 #include <string>
 #include <list>
 
-template<size_t N>
-int calculatedRotates(std::list<int> calculateRotatesList,
+std::list<int> calculatedRotates(std::list<int> calculateRotatesList,
                       int calculateKNumber) {
     // This function calculate average and list
     std::list<int> rotatesNumberList;
     int factionRotatesNumber = 0;
+    int timesNumberFirst = 0;
+    int timesNumberSecond = 0;
 
     // process
-    for (int loopNumberFirst = calculateKNumber;
-             loopNumberFirst < calculateRotatesList.size();
-             ++loopNumberFirst) {
-        factionRotatesNumber = calculateRotatesList[loopNumberFirst];
-        rotatesNumberList.push_back(factionRotatesNumber);
+    for (int loopNumberFirst : calculateRotatesList) {
+        timesNumberFirst +=1;
+        if (timesNumberFirst > calculateKNumber) {
+            factionRotatesNumber = loopNumberFirst;
+            rotatesNumberList.push_back(factionRotatesNumber);
+        }
     }
-    for (int loopNumberSecond = 0;
-             loopNumberSecond < calculateKNumber;
-             ++loopNumberSecond) {
-        factionRotatesNumber = calculateRotatesList[loopNumberSecond];
-        rotatesNumberList.push_back(factionRotatesNumber);
+
+    for (int loopNumberSecond : calculateRotatesList) {
+        timesNumberSecond +=1;
+        if (timesNumberSecond <= calculateKNumber) {
+            factionRotatesNumber = loopNumberSecond;
+            rotatesNumberList.push_back(factionRotatesNumber);
+        }
     }
 
     return rotatesNumberList;
@@ -35,7 +39,7 @@ int calculatedRotates(std::list<int> calculateRotatesList,
 int main() {
     // This Program calculate average
     std::list<int> rotatesList;
-    int rotatesNumber;
+    std::list<int> rotatesNumber;
 
     std::string userKString;
     int userKNumber = -1;
@@ -67,6 +71,7 @@ int main() {
         }
     } catch (std::invalid_argument) {
         // output
+        std::cout << "" << std::endl;
         std::cout << "You didn't enter an integer." << std::endl;
     }
 
@@ -79,7 +84,9 @@ int main() {
 
         // output
         std::cout << "" << std::endl;
-        std::cout << rotatesNumber << std::endl;
+        for (int answer_number : rotatesNumber) {
+            std::cout << answer_number << " ";
+        }
     } else {
         // output
         std::cout << "" << std::endl;
